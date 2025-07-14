@@ -2,31 +2,28 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>AR Panel Demo</title>
+    <title>AR Panel Eléctrico</title>
+
+    <!-- A-Frame y MindAR -->
     <script src="https://cdn.jsdelivr.net/npm/aframe@1.4.2/dist/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.1.4/dist/mindar-image-aframe.prod.js"></script>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
 
+    <link rel="stylesheet" href="style.css" />
+  </head>
   <body>
     <div id="ar-container">
       <a-scene
-        mindar-image="imageTargetSrc: ./targets.mind; autoStart: true;"
-        embedded
+        mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
         color-space="sRGB"
+        embedded
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: true"
       >
-        <a-assets>
-          <!-- Puedes precargar aquí modelos o imágenes si decides expandir -->
-        </a-assets>
-
         <!-- Cámara -->
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Marcador -->
+        <!-- Target index 0: marcador personalizado -->
         <a-entity mindar-image-target="targetIndex: 0">
-          <!-- Puntos interactivos como base visual 3D -->
           <a-plane
             position="0 0 0"
             width="1"
@@ -36,7 +33,7 @@
         </a-entity>
       </a-scene>
 
-      <!-- Botones flotantes (Canvas HTML) -->
+      <!-- UI Overlay (HTML sobre canvas) -->
       <div class="ui-overlay">
         <button class="info-btn" style="top: 30%; left: 40%;" onclick="showInfo(1)">
           ⚡ Toma Principal
