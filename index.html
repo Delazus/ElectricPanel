@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>AR Panel Eléctrico</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel eléctrico AR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/script.js" defer></script>
+    <script src="js/script-footer-buttons.js" defer></script>
+    <script src="js/script-ar-load.js" defer></script>
+    <script src="js/script-sprites.js" defer></script>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <img src="imgs/logo-bioled-75x73.png" alt="Bioled" class="logo">
+    </header>
 
-    <!-- A-Frame y MindAR -->
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-
-    <!-- Estilos -->
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="ar-container">
-      <!-- Escena AR -->
-      <a-scene
-        mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
-        color-space="sRGB"
-        embedded
-        vr-mode-ui="enabled: false"
-        device-orientation-permission-ui="enabled: true"
-      >
-        <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-        <a-entity mindar-image-target="targetIndex: 0">
-          <a-plane position="0 0 0" width="1" height="1" opacity="0"></a-plane>
-        </a-entity>
-      </a-scene>
-
-      <!-- UI (HTML) -->
-      <div class="ui-overlay">
-        <button class="info-btn" style="top: 30%; left: 40%;" onclick="showInfo(1)">
-          ⚡ Toma Principal
-        </button>
-        <button class="info-btn" style="top: 60%; left: 55%;" onclick="showInfo(2)">
-          🔧 Breaker Cocina
-        </button>
-
-        <!-- Tooltip Slide-up -->
-        <div id="tooltip" class="tooltip">
-          <div class="tooltip-header">
-            <span id="tooltip-icon" class="tooltip-title">⚠️</span>
-            <span id="tooltip-title" class="tooltip-title">Título</span>
-            <button class="tooltip-close" onclick="hideTooltip()">×</button>
-          </div>
-          <div id="tooltip-content" class="tooltip-content">
-            Aquí va la descripción del componente.
-          </div>
-        </div>
-      </div>
+    <!-- Contenedor AR -->
+    <div id="ar-container" class="ar-container">
+        <!-- Aquí se integrará el canvas de MindAR.js -->
     </div>
 
-    <script src="main.js"></script>
-  </body>
+    <!-- Barra de botones -->
+    <div class="footer-buttons">
+        <button id="btn-subtitles" class="circle-button" onclick="toggleSubtitles()" >
+            <svg class="icon">
+                <use href="imgs/icons.svg#icon-subtitles"></use>
+            </svg>
+        </button>
+    </div>
+    
+        <!-- Subtítulos flotantes -->
+    <div id="subtitles-box" class="subtitles-box">
+        <div class="subtitles-box-header">Comencemos</div>
+        <div class="subtitles-box-bodyall">
+            <div class="subtitles-box-title"></div> <!-- Contenedor para el título del subtítulo -->
+            <div class="subtitles-box-body"></div> <!-- Contenedor para el texto del subtítulo -->
+        </div>
+    </div>
+
+    <!-- Instrucciones iniciales -->
+    <div id="intro-overlay" class="intro-overlay">
+        <!-- Paso 1: Bienvenida -->
+        <div id="intro-step-1" class="intro-step">
+            <img class="header-isologo" src="imgs/isologo-avanze-negro.png" alt="Grupo Avanze">
+            <div class="sprite-container">
+                <div class="robot-sprite anim-1"></div>
+            </div>
+            <h1>¡Bienvenido/a a Bioled!</h1>
+            <div class="p-container"> 
+            <p>
+                Explora esta experiencia interactiva donde la tecnología y la innovación se conectan con la energía. Este panel eléctrico ha sido optimizado para mostrarte, a través de realidad aumentada, cómo funcionan sus componentes. Acércate, descubre y aprende con cada punto de información.
+            </p>
+            </div>    
+            <button onclick="nextIntroStep()">Siguiente</button>
+        </div>
+
+        <!-- Paso 2: Marcador -->
+        <div id="intro-step-2" class="intro-step hidden">
+            <img class="header-isologo" src="imgs/isologo-avanze-negro.png" alt="Grupo Avanze">
+            <div class="sprite-container">
+                <div class="robot-sprite anim-2"></div>
+            </div>
+            <h1>Encuentra el marcador</h1>
+            <div class="p-container"> 
+            <p>
+                Enfoca tu cámara en el marcador de la tarjeta. Espera un momento mientras activamos la experiencia de realidad aumentada y exploremos juntos nuestras soluciones tecnológicas.
+            </p>
+            <img class="marker-image" src="imgs/qr-pcgeek-AR.png" alt="Ejemplo de marcador">    
+            </div>
+            <button onclick="closeIntro()">Comenzar</button>
+        </div>
+    </div>
+</body>
 </html>
