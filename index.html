@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <title>AR Panel Eléctrico</title>
 
-    <!-- A-Frame y MindAR -->
+    <!-- A-Frame y MindAR
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>-->
 
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="ar-container">
+      <!-- Escena AR -->
       <a-scene
         mindar-image="imageTargetSrc: targets.mind; autoStart: true;"
         color-space="sRGB"
@@ -19,21 +21,14 @@
         vr-mode-ui="enabled: false"
         device-orientation-permission-ui="enabled: true"
       >
-        <!-- Cámara -->
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <!-- Target index 0: marcador personalizado -->
         <a-entity mindar-image-target="targetIndex: 0">
-          <a-plane
-            position="0 0 0"
-            width="1"
-            height="1"
-            opacity="0"
-          ></a-plane>
+          <a-plane position="0 0 0" width="1" height="1" opacity="0"></a-plane>
         </a-entity>
       </a-scene>
 
-      <!-- UI Overlay (HTML sobre canvas) -->
+      <!-- UI (HTML) -->
       <div class="ui-overlay">
         <button class="info-btn" style="top: 30%; left: 40%;" onclick="showInfo(1)">
           ⚡ Toma Principal
@@ -42,9 +37,16 @@
           🔧 Breaker Cocina
         </button>
 
-        <div id="tooltip" class="tooltip hidden">
-          <span id="tooltip-text"></span>
-          <button onclick="hideTooltip()">Cerrar</button>
+        <!-- Tooltip Slide-up -->
+        <div id="tooltip" class="tooltip">
+          <div class="tooltip-header">
+            <span id="tooltip-icon" class="tooltip-title">⚠️</span>
+            <span id="tooltip-title" class="tooltip-title">Título</span>
+            <button class="tooltip-close" onclick="hideTooltip()">×</button>
+          </div>
+          <div id="tooltip-content" class="tooltip-content">
+            Aquí va la descripción del componente.
+          </div>
         </div>
       </div>
     </div>
