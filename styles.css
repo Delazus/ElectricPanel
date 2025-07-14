@@ -1,0 +1,64 @@
+/* Color Palette */
+:root {
+    --color-primary: #FDD866; /* Botones principales, encabezado */
+    --color-secondary: #1C1E21; /* Texto principal */
+    --color-complementary-vivid: #FF6F61; /* Acciones destacadas */
+    --color-complementary-calm: #5DB39B; /* Estados positivos */
+    --color-complementary-calm-light: #D2E9DE; /* Estados positivos */
+    --color-neutral-light: #F9FAFC; /* Fondo principal */
+    --color-neutral-medium: #EBECF2; /* Botones secundarios */
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+#ar-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.ui-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.info-btn {
+  position: absolute;
+  pointer-events: auto;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 250px;
+  background: white;
+  color: black;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+.tooltip button {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
